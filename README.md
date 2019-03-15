@@ -4,7 +4,8 @@ as well as Python documentation.
 
 Specific links for adapted material (besides the Kurose/Ross material): 
 https://www.geeksforgeeks.org/socket-programming-multi-threading-python/
-\n
+
+
 https://docs.python.org/3/howto/sockets.html
 
 The code was written using the IDLE IDE. 
