@@ -1,5 +1,10 @@
 The server code in this repository is (supposed to be) a multi-threaded server. It is written in Python 3.5.1
-and is adapted from code on Geeksforgeeks.com and from the Kurose/Ross Computer Networking textbook and its companion material.
+and is adapted from code on Geeksforgeeks.com and from the Kurose/Ross Computer Networking textbook and its companion material,
+as well as Python documentation.
+
+Specific links for adapted material (besides the Kurose/Ross material): 
+https://www.geeksforgeeks.org/socket-programming-multi-threading-python/
+https://docs.python.org/3/howto/sockets.html
 
 The code was written using the IDLE IDE. 
 
