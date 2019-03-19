@@ -5,7 +5,7 @@ from socket import *
 from _thread import *
 import threading
 
-print_lock = threading.Lock()
+data_lock = threading.Lock()
 
 #Thread function
 def threaded(connectionSocket):
@@ -25,7 +25,7 @@ def threaded(connectionSocket):
             #Send data to client
             connectionSocket.send(outputdata)
             print("File sent")
-            print_lock.release()
+            data_lock.release()
             break
         
         except:
@@ -34,7 +34,7 @@ def threaded(connectionSocket):
             connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \n', 'utf-8'))
 
             #Close client socket
-            print_lock.release()
+            data_lock.release()
             connectionSocket.close()
             break
             
@@ -53,7 +53,7 @@ def Main():
     serverSocket.listen(5)
     
     while True:
-        print_lock.acquire()
+        data_lock.acquire()
         #Establish the connection
         print('Ready to serve...')
         connectionSocket, addr = serverSocket.accept()
