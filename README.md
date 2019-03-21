@@ -1,14 +1,15 @@
 The server code in this repository is (supposed to be) a multi-threaded server. It is written in Python 3.5.1
-and is adapted from code on Geeksforgeeks.com and from the Kurose/Ross Computer Networking textbook and its companion material,
-as well as Python documentation.
+and is adapted from code on Geeksforgeeks.com, RealPython.com, and from the Kurose/Ross Computer Networking textbook and its companion material, as well as Python documentation.
 
 Specific links for adapted material (besides the Kurose/Ross material): 
+
 https://www.geeksforgeeks.org/socket-programming-multi-threading-python/
 
+https://realpython.com/python-sockets/#socket-api-overview
 
 https://docs.python.org/3/howto/sockets.html
 
-The code was written using the IDLE IDE. 
+The code was written using the IDLE IDE, and primarily tested running in IDLE. I have also run the scripts in a CLI (Windows 10) with mixed success.
 
 Currently the server.py script seems to successfully send files via HTTP to the client, but the files' contents do not appear on
 the screen. This is the current problem that I'm working on. 
