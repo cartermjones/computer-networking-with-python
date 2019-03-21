@@ -15,10 +15,9 @@ The code was written using the IDLE IDE, and primarily tested running in IDLE. I
 
 <b>The Server Script (server.py) </b>
 
-Currently the server.py script seems to successfully send files via HTTP to the client, but the file's contents do not appear on
-the screen. This is the current problem that I'm working on. 
+Currently the server.py script seems to successfully send files via HTTP to the client, but the file's contents do not appear in the browswer - they ARE, however, seen quite clearly in the CLI, and appear to be sent properly. Making the file appear in a browser is the current problem that I'm working on. 
 
-(Further details about how to use this script will be added in the future. Work in progress.)
+(Further details about how to use this script will be added in the future. Work in progress! :) )
 
 <b>The Client Script (client.py)</b>
 
