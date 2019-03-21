@@ -5,27 +5,41 @@ from socket import *
 from _thread import *
 import threading
 
+#Import time module for calculating RTT
+import time
+
+#Create a lock that will be used to manage the threads
 data_lock = threading.Lock()
 
 #Thread function
 def threaded(connectionSocket):
+    
     while True:
-        
+         
         try:
-            #data received from client
+            #Request received from client
             message = connectionSocket.recv(1024)
+
+            #Create received time stamp
+            recv_time = time.time()
+
+            #Parse message from client
             filename = message.split()[1]
             filename = filename.decode('utf-8')
-            f = open('.' + filename, 'rb')
+            f = open('.' + filename, 'r')
             outputdata = f.read(1024)
-        
+
             #Send HTTP 200 OK Response message
-            connectionSocket.send(bytes("HTTP/1.0 200 OK\n", "utf-8"))
+            connectionSocket.sendall(bytes("HTTP/1.0 200 OK\n", "utf-8"))
 
             #Send data to client
-            connectionSocket.send(outputdata)
-            print("File sent")
-            data_lock.release()
+            connectionSocket.sendall(outputdata.encode('utf-8'))
+
+            #Display response to console
+            print("HTTP/1.0 200 OK")
+            
+            #Create sent time stamp
+            sent_time = time.time()
             break
         
         except:
@@ -33,39 +47,59 @@ def threaded(connectionSocket):
             #Send response message for file not found
             connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \n', 'utf-8'))
 
-            #Close client socket
-            data_lock.release()
-            connectionSocket.close()
+            #Display to console
+            print("HTTP/1.0 404 File Not Found")
+
+            #Create time stamp
+            sent_time = time.time()
             break
             
-        #Close connection
-        
-        connectionSocket.close()
+    #Calculate RTT
+    rtt = round((sent_time - recv_time), 3)
 
-def Main():
+    #Display RTT
+    print("RTT: " + str(rtt) + "ms")
+    
+    #Close connection and release lock
+    connectionSocket.close()
+    data_lock.release()
+    print("Lock Released\n")
+
+#This is the main logic of the server
+def serve():
+
+    #Create a server socket
     serverSocket = socket(AF_INET, SOCK_STREAM)
 
     #Prepare a server socket
-    HOST = gethostname()
+    HOST = '127.0.0.1'
     PORT = 50007
-
     serverSocket.bind((HOST, PORT))
     serverSocket.listen(5)
-    
+
     while True:
+        
+        #Acquire lock
         data_lock.acquire()
-        #Establish the connection
+        print("Lock acquired")
         print('Ready to serve...')
+        
+        #Establish the connection
         connectionSocket, addr = serverSocket.accept()
-       
-        print('Connected by ' + str(addr)) 
+        print('Connected by ' + str(addr))
+        
+        #Start new thread
         start_new_thread(threaded, (connectionSocket,))
-    
+        break
+        
     #Close this socket
     serverSocket.close()
+    
+
+def Main():
+
+    while True:
+        serve()
 
 if __name__ == '__main__':
     Main()
-
-    
-        
