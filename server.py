@@ -23,8 +23,14 @@ def threaded(connectionSocket):
             #Create received time stamp
             recv_time = time.time()
 
-            #Parse message from client
-            filename = message.split()[1]
+            #If the request is coming from the CLI, do this:
+            filename = message
+
+            #If the request is coming from a browser, do this:
+            if len(message.decode('utf-8')) > 20:
+                #Parse message from client
+                filename = message.split()[1]
+            
             filename = filename.decode('utf-8')
             f = open('.' + filename, 'r')
             outputdata = f.read(1024)
