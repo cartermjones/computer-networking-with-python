@@ -30,11 +30,15 @@ py client.py </filename_to_be_requested>
 This will yield a result like the following: 
 
 Host Name: DESKTOP-5DDS25T
+
 Peer Name: ('127.0.0.1', 50007)
+
 Protocol: TCP
+
 HTTP Status: HTTP/1.0 200 OK
 
 Some Data
+
 RTT: 0.015ms
 
 It is important to note that the '/' character must be included in the file name, or else the server.py script will return a 404 File Not Found message. (While it can infer the '.' in the relative path, it doesn't infer the '/'.)
