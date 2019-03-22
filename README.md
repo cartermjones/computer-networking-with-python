@@ -23,7 +23,7 @@ py server.py
 
 Once the server is running, information can be requested from it by going to a browser and querying like so:
 
-http://127.0.0.1:8080/<filename> 
+http://127.0.0.1:8080/filename 
 
 It will only work with files that are in the same directory as the server.py script. 
 
@@ -58,7 +58,7 @@ The client.py script is a simple web client written with code gleaned or adapted
 
 It can be run in a Windows CLI as follows:
 
-py client.py </filename_to_be_requested>
+py client.py /filename_to_be_requested
 
 This will yield a result like the following: 
 
