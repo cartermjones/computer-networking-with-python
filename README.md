@@ -78,5 +78,5 @@ It is important to note that the '/' character must be included in the file name
 
 <b>Other Information of Note</b>
 
-For the client.py and server.py scripts to work, they must be in the same folder as the documents being requested. There is currently no way for them to deal with absolute paths. 
+For the client.py and server.py scripts to work, they must be in the same directory as the documents being requested. There is currently no way for them to deal with absolute paths. 
 
