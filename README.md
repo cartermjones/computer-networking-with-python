@@ -64,7 +64,7 @@ This will yield a result like the following:
 
 Host Name: DESKTOP-5DDS25T
 
-Peer Name: ('127.0.0.1', 50007)
+Peer Name: ('127.0.0.1', 8080)
 
 Protocol: TCP
 
