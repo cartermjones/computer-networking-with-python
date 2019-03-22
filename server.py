@@ -30,19 +30,19 @@ def threaded(connectionSocket):
             if len(message.decode('utf-8')) > 20:
                 #Parse message from client
                 filename = message.split()[1]
-            
+    
             filename = filename.decode('utf-8')
-            f = open('.' + filename, 'r')
+            f = open('.' + filename, 'rb')
             outputdata = f.read(1024)
 
             #Send HTTP 200 OK Response message
-            connectionSocket.sendall(bytes("HTTP/1.0 200 OK\n", "utf-8"))
+            connectionSocket.send(bytes("HTTP/1.0 200 OK\n", "utf-8"))
 
             #Send data to client
-            connectionSocket.sendall(outputdata.encode('utf-8'))
+            connectionSocket.send(outputdata)
 
             #Display response to console
-            print("HTTP/1.0 200 OK")
+            print("HTTP Status: HTTP/1.0 200 OK")
             
             #Create sent time stamp
             sent_time = time.time()
@@ -54,7 +54,7 @@ def threaded(connectionSocket):
             connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \n', 'utf-8'))
 
             #Display to console
-            print("HTTP/1.0 404 File Not Found")
+            print("HTTP Status: HTTP/1.0 404 File Not Found")
 
             #Create time stamp
             sent_time = time.time()
@@ -79,7 +79,7 @@ def serve():
 
     #Prepare a server socket
     HOST = '127.0.0.1'
-    PORT = 50007
+    PORT = 8080
     serverSocket.bind((HOST, PORT))
     serverSocket.listen(5)
 
@@ -87,12 +87,14 @@ def serve():
         
         #Acquire lock
         data_lock.acquire()
-        print("Lock acquired")
+        print("Lock Acquired")
         print('Ready to serve...')
         
         #Establish the connection
         connectionSocket, addr = serverSocket.accept()
-        print('Connected by ' + str(addr))
+        print("Host Name: " + gethostname())
+        print('Peer Name:' + str(connectionSocket.getpeername()))
+        print("Protocol: TCP")
         
         #Start new thread
         start_new_thread(threaded, (connectionSocket,))
