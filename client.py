@@ -9,7 +9,7 @@ import sys
 
 #create socket
 HOST = '127.0.0.1'
-PORT = 50007
+PORT = 8080
 
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
