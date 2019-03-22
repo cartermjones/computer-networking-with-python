@@ -21,6 +21,12 @@ In IDLE, it can be run using Run->Run Module (F5). In the CLI, it can run this w
 
 py server.py
 
+Once the server is running, information can be requested from it by going to a browser and querying like so:
+
+http://127.0.0.1:8080/<filename> 
+
+It will only work with files that are in the same directory as the server.py script. 
+
 The output should be as follows: 
 
 Lock Acquired
