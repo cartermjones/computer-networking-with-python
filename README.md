@@ -17,6 +17,31 @@ The code was written using the IDLE IDE, and primarily tested running in IDLE. I
 
 Currently the server.py script seems to successfully send files via HTTP to the client, but the file's contents do not appear in the browswer - they ARE, however, seen quite clearly in the CLI, and appear to be sent properly. Making the file appear in a browser is the current problem that I'm working on. 
 
+In IDLE, it can be run using Run->Run Module (F5). In the CLI, it can run this way:
+
+py server.py
+
+The output should be as follows: 
+
+Lock Acquired
+
+Ready to Serve...
+
+Host Name: DESKTOP-5DDS25T
+
+Peer Name: ('127.0.0.1', 50034)
+
+Protocol: TCP
+
+HTTP Status: HTTP/1.0 200 OK
+
+Lock Released
+
+Lock Acquired
+
+Ready to Serve... 
+
+
 (Further details about how to use this script will be added in the future. Work in progress! :) )
 
 <b>The Client Script (client.py)</b>
