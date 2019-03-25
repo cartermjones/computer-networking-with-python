@@ -36,7 +36,7 @@ def threaded(connectionSocket):
             outputdata = f.read(1024)
 
             #Send HTTP 200 OK Response message
-            connectionSocket.send(bytes("HTTP/1.0 200 OK\n", "utf-8"))
+            connectionSocket.send(bytes("HTTP/1.0 200 OK \r\n\n", "utf-8"))
 
             #Send data to client
             connectionSocket.send(outputdata)
@@ -51,7 +51,7 @@ def threaded(connectionSocket):
         except:
 
             #Send response message for file not found
-            connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \n', 'utf-8'))
+            connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \r\n\n', 'utf-8'))
 
             #Display to console
             print("HTTP Status: HTTP/1.0 404 File Not Found")
