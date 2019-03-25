@@ -1,6 +1,6 @@
 <b> Overview </b>
 
-The code in this repository is (supposed to be) a multi-threaded server script (server.py) and a single-threaded client script (client.py). They are written in Python 3.5.1
+The code in this repository is a multi-threaded server script (server.py) and a single-threaded client script (client.py). They are written in Python 3.5.1
 and are adapted from code on Geeksforgeeks.com, RealPython.com, and from the Kurose/Ross Computer Networking textbook and its companion material, as well as Python documentation.
 
 Specific links for adapted material (besides the Kurose/Ross material): 
@@ -11,11 +11,11 @@ https://realpython.com/python-sockets/#socket-api-overview
 
 https://docs.python.org/3/howto/sockets.html
 
-The code was written using the IDLE IDE, and primarily tested running in IDLE. I have also run the scripts in a CLI (Windows 10) with mixed success.
+The code was written using the IDLE IDE, and primarily tested running in IDLE. I have also run the scripts in a CLI (Windows 10).
 
 <b>The Server Script (server.py) </b>
 
-Currently the server.py script seems to successfully send files via HTTP to the client, but the file's contents do not appear in the browser - they ARE, however, seen quite clearly in the CLI, and appear to be sent properly. Making the file appear in a browser is the current problem that I'm working on. 
+The server.py script is capable of serving files to both through the CLI and through a browser.
 
 In IDLE, it can be run using Run->Run Module (F5). In the CLI, it can run this way:
 
