@@ -1,3 +1,10 @@
+'''
+Author: Carter Jones
+
+Code adapted from Kurose/Ross textbook and supplement,
+geeksforgeeks.com, realpython.com, and Python documentation.
+'''
+
 #import socket module
 from socket import *
 
@@ -7,9 +14,9 @@ import time
 #Import sys module to take arguments from command line
 import sys
 
-#create socket
-HOST = '127.0.0.1'
-PORT = 8080
+#create socket, taking HOST and PORT names from CLI
+HOST = sys.argv[1]
+PORT = int(sys.argv[2])
 
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
@@ -19,10 +26,12 @@ clientSocket.connect((HOST, PORT))
 #Display connection information
 print("Host Name: " + gethostname())
 print("Peer Name: " + str(clientSocket.getpeername()))
+print('Socket Family: INET')
+print('Socket Type: STREAM')
 print("Protocol: TCP")
 
 #Retrieve requested file name from CLI
-requestname = sys.argv[1]
+requestname = sys.argv[3]
 
 #Create sending time stamp
 sent_time = time.time()
@@ -31,10 +40,10 @@ sent_time = time.time()
 clientSocket.send(bytes(requestname, 'utf-8'))
 
 #Receive status message from server
-status = clientSocket.recv(1024)
+status = clientSocket.recv(5120r)
 
 #Receive and decode data from server
-data = clientSocket.recv(1024).decode('utf-8')
+data = clientSocket.recv(5120).decode('utf-8')
 
 #Create received time stamp
 recv_time = time.time()
