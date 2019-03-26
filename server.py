@@ -1,3 +1,10 @@
+'''
+Author: Carter Jones
+
+Code adapted from Kurose/Ross textbook and supplement,
+geeksforgeeks.com, realpython.com, and Python documentation.
+'''
+
 #import socket module
 from socket import *
 
@@ -7,6 +14,9 @@ import threading
 
 #Import time module for calculating RTT
 import time
+
+#Import sys module to take arguments from CLI
+import sys
 
 #Create a lock that will be used to manage the threads
 data_lock = threading.Lock()
@@ -18,7 +28,7 @@ def threaded(connectionSocket):
          
         try:
             #Request received from client
-            message = connectionSocket.recv(1024)
+            message = connectionSocket.recv(5120)
 
             #Create received time stamp
             recv_time = time.time()
@@ -33,13 +43,13 @@ def threaded(connectionSocket):
     
             filename = filename.decode('utf-8')
             f = open('.' + filename, 'rb')
-            outputdata = f.read(1024)
+            outputdata = f.read(5120)
 
             #Send HTTP 200 OK Response message
             connectionSocket.send(bytes("HTTP/1.0 200 OK \r\n\n", "utf-8"))
 
             #Send data to client
-            connectionSocket.send(outputdata)
+            connectionSocket.sendall(outputdata)
 
             #Display response to console
             print("HTTP Status: HTTP/1.0 200 OK")
@@ -51,7 +61,7 @@ def threaded(connectionSocket):
         except:
 
             #Send response message for file not found
-            connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \r\n\n', 'utf-8'))
+            connectionSocket.send(bytes('HTTP/1.0 404 File Not Found \n', 'utf-8'))
 
             #Display to console
             print("HTTP Status: HTTP/1.0 404 File Not Found")
@@ -79,7 +89,7 @@ def serve():
 
     #Prepare a server socket
     HOST = '127.0.0.1'
-    PORT = 8080
+    PORT = int(sys.argv[1])
     serverSocket.bind((HOST, PORT))
     serverSocket.listen(5)
 
@@ -94,6 +104,8 @@ def serve():
         connectionSocket, addr = serverSocket.accept()
         print("Host Name: " + gethostname())
         print('Peer Name:' + str(connectionSocket.getpeername()))
+        print('Socket Family: INET')
+        print('Socket Type: STREAM')
         print("Protocol: TCP")
         
         #Start new thread
@@ -111,3 +123,6 @@ def Main():
 
 if __name__ == '__main__':
     Main()
+
+    
+        
