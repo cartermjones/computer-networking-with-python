@@ -15,7 +15,7 @@ The code was written using the IDLE IDE, and primarily tested running in IDLE. I
 
 <b>The Server Script (server.py) </b>
 
-The server.py script is capable of serving files to both through the CLI and through a browser.
+The server.py script is capable of serving files both through the CLI and through a browser.
 
 To run the server.py script, enter the following into the CLI from the directory where server.py and the files to be served are located:
 
